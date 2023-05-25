@@ -36,6 +36,12 @@ function AllContactsModal({
     };
     handleAllCountriesData();
   }, []);
+
+  const handleUsContactShow = async () => {
+    await handleClose1();
+    await handleShow2();
+  };
+
   return (
     <>
       <Modal show={show1} onHide={handleClose1}>
@@ -43,15 +49,15 @@ function AllContactsModal({
           <Modal.Title>All Contacts</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {contactData?.map((dt) => {
-            return <p>{dt.phone}</p>;
+          {contactData?.map((dt, id) => {
+            return <p key={id}>{dt.phone}</p>;
           })}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleShow1}>
             All Contacts
           </Button>
-          <Button variant="secondary" onClick={handleShow2}>
+          <Button variant="secondary" onClick={handleUsContactShow}>
             US Contacts
           </Button>
           <Button variant="primary" onClick={handleClose1}>

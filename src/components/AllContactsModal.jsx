@@ -1,22 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
-function AllContactsModal({ show, setShow, handleClose, handleShow }) {
+function AllContactsModal({
+  show1,
+  setShow,
+  handleClose1,
+  handleShow1,
+  show2,
+  setShow2,
+  handleClose2,
+  handleShow2,
+}) {
+  const [contactData, setContactData] = useState([]);
+  useEffect(() => {
+    const handleAllCountriesData = () => {
+      var myHeaders = new Headers();
+      myHeaders.append("accept", "application/json");
+      myHeaders.append(
+        "X-CSRFToken",
+        "SSNrTU6VISIi3B7Z2vXHNygTeHXxIKn9PV6GXLFaPAkqMZJUBAutV5TEyirKhpI0"
+      );
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("https://contact.mediusware.com/api/contacts/", requestOptions)
+        .then((response) => response.json())
+        .then((result) => setContactData(result.results))
+        .catch((error) => console.log("error", error));
+    };
+    handleAllCountriesData();
+  }, []);
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show1} onHide={handleClose1}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>All Contacts</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          {contactData?.map((dt) => {
+            return <p>{dt.phone}</p>;
+          })}
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleShow1}>
+            All Contacts
+          </Button>
+          <Button variant="secondary" onClick={handleShow2}>
+            US Contacts
+          </Button>
+          <Button variant="primary" onClick={handleClose1}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
+        </Modal.Footer>
+        <Modal.Footer style={{ display: "flex", justifyContent: "flex-start" }}>
+          <Form.Check aria-label="option 1" label="Only Even" />
         </Modal.Footer>
       </Modal>
     </>

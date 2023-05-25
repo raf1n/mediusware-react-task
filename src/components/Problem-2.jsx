@@ -5,13 +5,13 @@ import USContactsModal from "./USContactsModal";
 const Problem2 = () => {
   const [showModal1, setShowModal1] = useState(false);
 
-  const handleClose = () => setShowModal1(false);
-  const handleShow = () => setShowModal1(true);
+  const handleClose1 = () => setShowModal1(false);
+  const handleShow1 = () => setShowModal1(true);
 
   const [showModal2, setShowModal2] = useState(false);
 
-  const handleClose2 = () => setShowModal1(false);
-  const handleShow2 = () => setShowModal1(true);
+  const handleClose2 = () => setShowModal2(false);
+  const handleShow2 = () => setShowModal2(true);
 
   return (
     <div className="container">
@@ -20,7 +20,7 @@ const Problem2 = () => {
 
         <div className="d-flex justify-content-center gap-3">
           <button
-            onClick={handleShow}
+            onClick={handleShow1}
             className="btn btn-lg btn-outline-primary"
             type="button"
           >
@@ -35,15 +35,21 @@ const Problem2 = () => {
           </button>
         </div>
         <AllContactsModal
-          show={showModal1}
-          handleClose={handleClose}
-          handleShow={handleShow}
+          show1={showModal1}
+          handleClose1={handleClose1}
+          handleShow1={handleShow1}
+          show2={showModal2}
+          handleClose2={handleClose2}
+          handleShow2={handleShow2}
         ></AllContactsModal>
 
         <USContactsModal
-          show={showModal2}
-          handleClose={handleClose2}
-          handleShow={handleShow2}
+          show1={showModal1}
+          handleClose1={handleClose1}
+          handleShow1={handleShow1}
+          show2={showModal2}
+          handleClose2={handleClose2}
+          handleShow2={handleShow2}
         ></USContactsModal>
       </div>
     </div>

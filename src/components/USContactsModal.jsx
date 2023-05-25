@@ -58,13 +58,25 @@ function USContactsModal({
           })}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleAllContactShow}>
+          <Button
+            variant="outline-primary"
+            style={{ color: "#46139f" }}
+            onClick={handleAllContactShow}
+          >
             All Contacts
           </Button>
-          <Button variant="secondary" onClick={handleShow2}>
+          <Button
+            style={{ color: "#ff7f50" }}
+            variant="outline-primary"
+            onClick={handleShow2}
+          >
             US Contacts
           </Button>
-          <Button variant="primary" onClick={handleClose2}>
+          <Button
+            style={{ color: "#46139f" }}
+            variant="outline-primary"
+            onClick={handleClose2}
+          >
             Close
           </Button>
         </Modal.Footer>
